@@ -1,0 +1,26 @@
+div.row
+  = link_to "#{member.first_name} #{member.last_name}", member, class: "directory-name"
+  div.row
+    div class="span3"
+      div.contact-info
+        p
+          = member.address 
+          br
+          = "#{member.city}, #{member.state} #{member.zip}"
+          br
+        p
+          -member.phone_numbers.each do |phone|
+              -if phone.publish?
+                = "#{phone.phone_type.abbreviation} #{phone.number}"
+                br
+        -member.email_addresses.each do |email|
+          -if email.publish
+            = email.address
+            br
+    div class="span3"
+      - if member.photo.nil?
+        = image_tag "Pics/no_image.jpg", class: "pull-right"
+      - else
+        = image_tag member.photo.url(:thumb), class: "pull-right"
+      p.voice-part-caption =member.voice_part.description
+hr

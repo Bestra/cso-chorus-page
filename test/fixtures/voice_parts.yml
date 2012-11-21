@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descripion: MyString
+  part: MyString
+  abbreviation: MyString
+  section: 1
+
+two:
+  descripion: MyString
+  part: MyString
+  abbreviation: MyString
+  section: 1

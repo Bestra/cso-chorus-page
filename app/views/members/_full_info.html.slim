@@ -1,0 +1,57 @@
+div.row
+  div.span6
+    h2
+      =' best_in_place member, :first_name 
+      =' best_in_place member, :last_name
+      =' "- #{member.voice_part.description}"
+      small =member.member_status.description
+    h3 
+      small Program Name 
+      =' best_in_place member, :program_name
+div.row
+  div class="span6"
+      table.table.table-bordered.table-striped
+        tr
+          th Address
+          th.small Publish?
+            
+        tr
+          td
+            = best_in_place member, :address 
+            br
+            = best_in_place member, :city
+            |, 
+            =' best_in_place member, :state
+            = best_in_place member, :zip
+          td = bool_icon(member.publish_data)
+      table.table.table-bordered.table-striped
+        tr
+          th Type
+          th Phone number
+          th.small Publish?
+        -member.phone_numbers.each do |phone|
+         tr 
+           td = phone.phone_type.description
+           td.phone-number = phone.number
+           td = bool_icon(phone.publish)
+      table.table.table-bordered.table-striped
+        tr
+          th Email Address
+          th.small Publish?
+        -member.email_addresses.each do |email|
+          tr
+            td = email.address
+            td = bool_icon( email.publish )
+      p 
+        strong Folder Number: 
+        - if member.folder
+          = member.folder.id
+        - else
+          = "None assigned"
+  div class="span3"
+    - if member.photo.nil?
+     = image_tag "Pics/no_image_thumb.jpg", class: "pull-right"
+    - else
+     /previous syntax before paperclip
+     /= image_tag "Pics/#{member.id}.jpg", class: "pull-right"
+     = image_tag member.photo.url(:thumb), class: "pull-right"

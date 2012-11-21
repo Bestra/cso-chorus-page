@@ -1,0 +1,35 @@
+= simple_nested_form_for(@member ,:html => { :class => 'form-horizontal' , :multipart => true}) do |f|
+  =f.association :voice_part, label_method: :description, value_method: :id
+  =f.association :member_status, label_method: :description, value_method: :id
+  =f.input :first_name
+  =f.input :last_name
+  =f.input :program_name
+  =f.input :address
+  =f.input :city
+  =f.input :state, input_html: { class: "input-mini" }
+  =f.input :zip, input_html: { class: "input-mini", maxlength: 5 }
+  =f.input :publish_data
+  =f.input :height, input_html: { class: "input-mini" }
+  =f.input :date_joined, input_html: { class: "input-small" }
+  =f.input :photo
+  =f.fields_for :phone_numbers do |phone| 
+    div.control-group
+      span Phone
+      =phone.text_field :number
+      =phone.collection_select :phone_type_id, PhoneType.all, :id, :description
+      =phone.check_box :publish
+      =phone.hidden_field :_destroy
+      span Publish  
+      = phone.link_to_remove "Remove number"
+  =f.link_to_add "Add a new number", :phone_numbers
+  =f.fields_for :email_addresses do |email|
+    div.control-group 
+      span Email 
+      =email.text_field :address 
+      =email.check_box :publish
+      =email.hidden_field :_destroy
+      span Publish  
+      =email.link_to_remove "Remove email"
+  =f.link_to_add "Add a new email", :email_addresses
+  br
+  =f.button :submit

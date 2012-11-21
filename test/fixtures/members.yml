@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  program_name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  publish_data: false
+  height: 1
+  date_joined: 2012-09-10
+  voice_part_id: 1
+  folder_id: 1
+  photo_path: MyString
+  status_id: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  program_name: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  publish_data: false
+  height: 1
+  date_joined: 2012-09-10
+  voice_part_id: 1
+  folder_id: 1
+  photo_path: MyString
+  status_id: 1

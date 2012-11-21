@@ -1,0 +1,60 @@
+@import "bootstrap";
+
+body {
+  padding-top: 40px;
+}
+/*member directory printout */
+.contact-info {
+  padding-left: 15px;
+}
+
+th.small {
+    font-size: 80%;
+}
+
+hr {
+  margin: 5px;
+}
+.voice-part-caption {
+  float: right;
+  margin-right: 10px;
+}
+
+.directory-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+
+}
+
+div.jcrop-holder img, img#preview
+{
+  max-width: none;
+}
+@media print {
+  @page {
+    margin: 0.5in;
+  }
+  .directory-entry {
+  page-break-inside: avoid;
+  }
+  .directory-row {
+    margin-left: 20pt;
+  }
+  .span6 {
+    width: 270pt;
+  }
+  .span3 {
+    width: 135pt;
+  }
+  .span2 {
+    width: 90pt;
+  }
+  .navbar {
+    display: none;
+  }
+}
+
+
+/* simpleform settings*/
+

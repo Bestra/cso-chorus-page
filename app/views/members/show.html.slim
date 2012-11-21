@@ -1,0 +1,8 @@
+div.container
+  div.row
+
+  = render :partial => 'full_info', :locals => { :member => @member}
+  div.row
+    = link_to raw('<i class="icon-edit"></i> Edit'), edit_member_path(@member), class: "btn"
+    = link_to raw('<i class="icon-trash"></i> Delete'), @member,method: :delete, confirm: 'Are you sure?',  class: "btn"
+

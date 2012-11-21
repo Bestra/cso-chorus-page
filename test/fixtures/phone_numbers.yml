@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  member_id: 1
+  number: MyString
+  phone_type_id: 1
+  publish: false
+
+two:
+  member_id: 1
+  number: MyString
+  phone_type_id: 1
+  publish: false
