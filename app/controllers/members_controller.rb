@@ -19,6 +19,9 @@ class MembersController < ApplicationController
   def directory
 
     @members = Member.where(status_id: 1).order("last_name")
+    @conductor = Member.find(85)
+    @conductor_address = { title: "First Community Church", address: "1320 Cambridge Blvd.", city: "Columbus" ,state: "OH", zip: 43212}
+    @accompanist = Member.find(84)
   end
 
   # GET /members/1

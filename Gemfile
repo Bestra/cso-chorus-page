@@ -10,7 +10,7 @@ gem 'simple_form'
 gem 'nested_form'
 gem 'slim'
 gem "slim-rails"
-gem "bootstrap-sass"
+gem "bootstrap-sass", '~> 2.2.1.1'
 gem "best_in_place"
 gem "paperclip", "~>3.0"
 gem "jcrop-rails"

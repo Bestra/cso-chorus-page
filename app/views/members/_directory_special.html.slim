@@ -1,0 +1,41 @@
+
+.row
+  .span3
+    p.directory-name.pull-right= title
+.row
+  .span3
+    - if member.photo.nil?
+      = image_tag "Pics/no_image.jpg", class: "pull-right"
+    - else
+      = image_tag member.photo.url(:thumb), class: "pull-right"
+  .span3
+    .contact-info
+      -if special_address
+        p
+          -if special_address[:title]
+            =special_address[:title]
+            br
+          = special_address[:address] 
+          br
+          = "#{special_address[ :city ]}, #{special_address[:state]} #{special_address[ :zip ]}"
+          br
+
+      -else
+        p
+          = member.address 
+          br
+          = "#{member.city}, #{member.state} #{member.zip}"
+          br
+      p
+        -member.phone_numbers.each do |phone|
+            -if phone.publish?
+              = "#{phone.phone_type.abbreviation} #{phone.number}"
+              br
+      -member.email_addresses.each do |email|
+        -if email.publish
+          = email.address
+          br
+.row.special-directory-entry
+  .span3
+    = link_to "#{member.first_name} #{member.last_name}", member, class: "directory-name pull-right"
+

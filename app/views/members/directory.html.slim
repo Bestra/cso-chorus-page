@@ -1,6 +1,70 @@
+
+
+/create the main page
+.row.hero-unit
+  h1 CSO CHORUS
+  h1 Pictorial Directory
+.row
+  .span12
+    = image_tag "Pics/cso_small_cropped.jpg"
+hr
+/create the page for the director, accompanist, and board
+.row
+  .span7
+    .spacer-page
+    /director and accompanist
+    
+    = render :partial => 'directory_special', :locals => { :member => @conductor, title: "Conductor", special_address: @conductor_address}
+    = render :partial => 'directory_special', :locals => { :member => @accompanist, title: "Accompanist", special_address: nil}
+  .span5
+    /board listing
+    h3 Executive Board
+    dl.dl-horizontal
+      dt Chair
+      dd Rebecca Wigal
+      dt Vice Chair
+      dd Greg Bennett
+      dt Secretary
+      dd Jennifer Young
+      dt Treasurer
+      dd Cassie Otani
+      dt Conductor, ex-officio
+      dd Ronald Jenkins
+      dt Past Chair, ex-officio
+      dd Larry Miller
+
+
+    h3 Special Appointments
+    dl.dl-horizontal
+      dt Attendance
+      dd Gail Storer
+      dt Chairs
+      dd Chris Westra
+      dt Communication
+      dd Greg Bennett
+      dd Amy Parker
+      dt Dress
+      dd Roger Chandler
+      dd Melissa Fata
+      dt Librarian
+      dd Dameon Jones
+      dt New Members
+      dd Laura Smith
+      dt Parlando Newsletter
+      dd Greg Bennett
+      dt Chorus Directory
+      dd Chris Westra
+      dt Social
+      dd Jeremy Roberts
+      dt Sunshine
+      dd John Schlabach
+hr
+
+
+/now the pictorial directory entries
 -@members.in_groups_of(2) do |members|
-  div class="row directory-row"
+  .row.directory-row
     -members.each do |member|
       -if member
-        div class="span6 directory-entry"
+        .span6.directory-entry
           = render :partial => 'directory_entry', :locals => { :member => member}

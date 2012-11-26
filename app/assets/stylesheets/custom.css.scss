@@ -20,11 +20,52 @@ hr {
   margin-right: 10px;
 }
 
+a {
+  color: black;
+}
+
 .directory-name {
   font-weight: bold;
   color: #333;
   font-size: 18px;
 
+}
+.spacer-page {
+  margin-bottom: 60px;
+}
+
+.special-directory-entry {
+  margin-bottom: 30px;
+}
+
+.dl-horizontal {
+  @include clearfix(); // Ensure dl clears floats if empty dd elements present
+  dt {
+    float: left;
+    width: $horizontalComponentOffset - 20;
+    clear: left;
+    text-align: right;
+    @include text-overflow();
+  }
+  dd {
+    margin-left: $horizontalComponentOffset;
+  }
+}
+
+
+a.directory-name:visited {
+  color: black;
+}
+a.directory-name:hover {
+  color: white;
+}
+
+.hero-unit {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+  font-family: Baskerville,serif;
 }
 
 div.jcrop-holder img, img#preview
@@ -34,6 +75,10 @@ div.jcrop-holder img, img#preview
 @media print {
   @page {
     margin: 0.5in;
+  }
+
+  a.directory-name:visited {
+    color: black;
   }
   .directory-entry {
   page-break-inside: avoid;
