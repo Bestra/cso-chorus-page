@@ -15,9 +15,20 @@ class Member < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
   end
 
+  def check_program_name
+    if program_name.present?
+      program_name
+    else
+      [first_name, last_name].join ' '
+    end
+  end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 
   has_attached_file :photo, :styles => {:thumb => ["95x120#", :jpg], :large => ["500x500>", :jpg]},
-    :processors => [:cropper], 
+    :processors => [:cropper],
 
     url: "Pics/:id_:style.:extension",
     default_url: "Pics/no_image_thumb.jpg",
@@ -25,7 +36,7 @@ class Member < ActiveRecord::Base
 
   validates_attachment_size :photo, :less_than => 2.megabytes
 
-  
+
 
 
   validates :first_name, :last_name, :status_id, :voice_part_id, :presence => true
