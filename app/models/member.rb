@@ -27,6 +27,11 @@ class Member < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def email
+    e = self.email_addresses.try(:first)
+    e.address if e
+  end
+
   has_attached_file :photo, :styles => {:thumb => ["95x120#", :jpg], :large => ["500x500>", :jpg]},
     :processors => [:cropper],
 
