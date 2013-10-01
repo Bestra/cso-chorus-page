@@ -1,5 +1,6 @@
 require 'csv'
-namespace :db do
+require 'date'
+namespace :chairs do
 
   MEMBERS_PER_WEEK = 5
   def create_chairs(file_path, number_of_weeks, members_per_week)
@@ -16,17 +17,17 @@ namespace :db do
     end
 
     schedule = schedule_members active_ids, chair_buddies, [], 1, number_of_weeks
-    assignments = schedule.each_with_index.map do |week, week_index|
-      week_members = Member.find week
-      week_members.map { |m| [m.id, m.name, m.email, week_index + 1] }
+    week0 = Date.parse "October 1"
+    assignments = schedule.each_with_index.map do |week_list, week_index|
+      week_members = Member.find week_list
+      week_members.map { |m| [m.id, m.last_name, m.name, m.email, week_index + 1, week0 + week_index.weeks] }
     end
 
-    csv_out = CSV.generate do |csv|
+    csv_out = CSV.open("/users/Chris/Downloads/chair_schedule.csv", "wb") do |csv|
       assignments.flatten(1).each do |a|
         csv << a
       end
     end
-    puts csv_out
   end
 
   def has_space?(schedule_array, members)
@@ -59,8 +60,6 @@ namespace :db do
     if week == total_weeks
       new_schedule
     else
-      puts "id pool has #{id_pool.count} members"
-      puts "new id pool has #{(id_pool - buddy_schedule).count} members"
       schedule_members(id_pool - buddy_schedule, buddies, new_schedule, week + 1, total_weeks)
     end
   end
