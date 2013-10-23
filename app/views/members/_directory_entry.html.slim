@@ -4,9 +4,9 @@ div.row
     div class="span3"
       div.contact-info
         p
-          = member.address 
+          = member.address
           br
-          = "#{member.city}, #{member.state} #{member.zip}"
+          = member.print_city_info
           br
         p
           -member.phone_numbers.each do |phone|

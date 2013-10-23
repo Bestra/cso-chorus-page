@@ -24,6 +24,14 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def print_city_info
+    if (self.city && self.state && self.zip)
+      "#{self.city}, #{self.state} #{self.zip}"
+    else
+      ""
+    end
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
