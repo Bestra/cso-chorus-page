@@ -1,5 +1,8 @@
 class Member < ActiveRecord::Base
-  attr_accessible :address, :city, :date_joined, :first_name, :height, :last_name, :photo_path, :program_name, :publish_data, :state, :status_id, :voice_part_id, :zip, :email_addresses_attributes, :phone_numbers_attributes, :photo, :no_chairs
+  attr_accessible :address, :city, :date_joined, :first_name, :height,
+    :last_name, :photo_path, :program_name, :publish_data,
+    :state, :status_id, :voice_part_id, :zip, :email_addresses_attributes,
+    :phone_numbers_attributes, :photo, :no_chairs
 
 
   #items for photo upload via paperclip, cropping via jcrop
@@ -7,6 +10,7 @@ class Member < ActiveRecord::Base
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
 
   scope :active, -> { where(status_id: 1) }
+
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
