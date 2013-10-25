@@ -1,12 +1,12 @@
 div.row
   div.span6
     h2
-      =' best_in_place member, :first_name 
+      =' best_in_place member, :first_name
       =' best_in_place member, :last_name
       =' "- #{member.voice_part.description}"
       small =member.member_status.description
-    h3 
-      small Program Name 
+    h3
+      small Program Name
       =' best_in_place member, :program_name
 div.row
   div class="span6"
@@ -14,13 +14,13 @@ div.row
         tr
           th Address
           th.small Publish?
-            
+
         tr
           td
-            = best_in_place member, :address 
+            = best_in_place member, :address
             br
             = best_in_place member, :city
-            |, 
+            |,
             =' best_in_place member, :state
             = best_in_place member, :zip
           td = bool_icon(member.publish_data)
@@ -30,7 +30,7 @@ div.row
           th Phone number
           th.small Publish?
         -member.phone_numbers.each do |phone|
-         tr 
+         tr
            td = phone.phone_type.description
            td.phone-number = phone.number
            td = bool_icon(phone.publish)
@@ -42,8 +42,8 @@ div.row
           tr
             td = email.address
             td = bool_icon( email.publish )
-      p 
-        strong Folder Number: 
+      p
+        strong Folder Number:
         - if member.folder
           = member.folder.id
         - else
