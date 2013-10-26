@@ -1,5 +1,4 @@
 class Member < ActiveRecord::Base
-  has_many :chair_schedules, :dependent => :destroy
   has_many :phone_numbers, :dependent => :destroy
   has_one :folder, :dependent => :destroy
   belongs_to :voice_part
@@ -12,7 +11,7 @@ class Member < ActiveRecord::Base
              first_name last_name program_name
              height photo_path photo publish_data
              status_id voice_part_id email_addresses_attributes
-             phone_numbers_attributes no_chairs)
+             phone_numbers_attributes no_chairs scheduled_chair_date)
 
   attr_accessible *attrs
 
