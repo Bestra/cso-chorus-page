@@ -24,6 +24,10 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def no_chairs
+    @no_chairs || false
+  end
+
   def print_city_info
     if (self.city && self.state && self.zip)
       "#{self.city}, #{self.state} #{self.zip}"

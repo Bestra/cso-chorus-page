@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026162716) do
+ActiveRecord::Schema.define(:version => 20131026210400) do
 
   create_table "email_addresses", :force => true do |t|
     t.integer  "member_id"
@@ -47,15 +47,15 @@ ActiveRecord::Schema.define(:version => 20131026162716) do
     t.integer  "voice_part_id"
     t.string   "photo_path"
     t.integer  "status_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "old_id"
     t.boolean  "picture"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "no_chairs"
+    t.boolean  "no_chairs",            :default => false
     t.datetime "scheduled_chair_date"
   end
 
