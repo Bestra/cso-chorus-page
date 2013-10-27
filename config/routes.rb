@@ -1,10 +1,11 @@
 CsoChorus::Application.routes.draw do
-  resources :chair_schedules
   resources :members
   root to: 'members#index'
 
   match '/directory' => 'members#directory'
   match '/check_pictures' => 'members#check_pictures'
+
+  match '/chairs' => 'chair_schedules#index'
 
   # root :to => 'welcome#index'
   # The priority is based upon order of creation:

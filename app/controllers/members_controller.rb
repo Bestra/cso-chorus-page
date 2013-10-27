@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  helper_method :sort_column, :sort_direction 
+  helper_method :sort_column, :sort_direction
   # GET /members
   # GET /members.json
   def index
@@ -83,8 +83,8 @@ class MembersController < ApplicationController
         if new_photo
           #TODO:add check for cropping here, then reprocess member photo if needed using @member.photo.reprocess!
           format.html {render action: "crop"}
-        #elsif !params[:member][:crop_x].blank? && !params[:member][:crop_y].blank? && !params[:member][:crop_h].blank? && !params[:member][:crop_w].blank? 
-      
+        #elsif !params[:member][:crop_x].blank? && !params[:member][:crop_y].blank? && !params[:member][:crop_h].blank? && !params[:member][:crop_w].blank?
+
           #if the crop parameters exist process the photo
           #@member.reprocess_photo
 
@@ -96,7 +96,7 @@ class MembersController < ApplicationController
         else
           #the default case is !new_photo && !cropping
           format.html { redirect_to @member, notice: 'Member was successfully updated.' }
-          format.json { head :no_content }
+          format.json { render json: @member }
         end
       else
         format.html { render action: "edit" }
@@ -123,16 +123,16 @@ class MembersController < ApplicationController
     @members.each do |member|
       member.picture = picture_status(member)
       member.save
-    end 
+    end
     flash[:success] = "Updated picture status"
     redirect_to members_path
   end
-      
+
 
   private
-    
+
     def cropping
-      !params[:member][:crop_x].blank? && !params[:member][:crop_y].blank? && !params[:member][:crop_h].blank? && !params[:member][:crop_w].blank? 
+      !params[:member][:crop_x].blank? && !params[:member][:crop_y].blank? && !params[:member][:crop_h].blank? && !params[:member][:crop_w].blank?
     end
 
     def new_photo
@@ -148,7 +148,7 @@ class MembersController < ApplicationController
     end
 
     def update_filter
-      unless %w[0 1 2 3 4].include?(params[:filter]) 
+      unless %w[0 1 2 3 4].include?(params[:filter])
         params[:filter] = "0"
       end
     end

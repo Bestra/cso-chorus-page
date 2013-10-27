@@ -13,6 +13,7 @@ div.row
         th = sortable 'last_name', 'Name'
         th = sortable 'voice_part_id', 'Voice Part'
         th = sortable 'status_id', 'Status'
+        th No Chairs
         /th = link_to 'Picture', :action=> :check_pictures
       tbody
       - @members.each do |member|
@@ -20,3 +21,4 @@ div.row
           td = link_to "#{member.first_name} #{member.last_name}", member
           td = member.voice_part.description
           td = best_in_place member, :status_id, type: :select, collection: MemberStatus.select_options
+          td = member.no_chairs
