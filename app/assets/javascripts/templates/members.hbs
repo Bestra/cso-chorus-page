@@ -1,0 +1,27 @@
+<div class="row">
+  <h2>Members</h2>
+  <div class="span4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Voice Part</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each}}
+        <tr {{bind-attr class="isActive:active :member"}}>
+          <td>{{#link-to 'member' this}}{{fullName}}{{/link-to}}</td>
+            <td>{{voicePart.description}}</td>
+            <td>{{memberStatus.description}}</td>
+          </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+  <div class="span8">
+    {{outlet}}
+  </div>
+</div>
