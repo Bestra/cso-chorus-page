@@ -13,6 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require cso_chorus
+
+// for more details see: http://emberjs.com/guides/application/
+CsoChorus = Ember.Application.create();
 //= require_tree .
 //= require jquery.purr
 //= require jcrop
