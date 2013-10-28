@@ -24,6 +24,16 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def to_ember_data
+    {first_name: first_name,
+      last_name: last_name,
+      voice_part_id: voice_part_id,
+      member_status_id: status_id
+    }
+  end
+
+
+
   def no_chairs
     @no_chairs || false
   end

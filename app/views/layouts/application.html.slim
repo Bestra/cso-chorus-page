@@ -7,18 +7,3 @@ html
     = csrf_meta_tags
     =yield(:head)
   body
-    header.navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          =link_to 'CSO Chorus', root_path, class: "brand"
-          ul.nav
-            li = link_to 'Members', members_path
-            li = link_to 'Directory', directory_path
-            li = link_to 'Chair Schedule', directory_path
-
-
-    .container
-      -flash.each do |key, value|
-        = content_tag(:div, value, class: "alert alert-#{key}")
-      =yield
-

@@ -12,7 +12,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @members }
+      format.json { render json: @members.map(&:to_ember_data) }
     end
   end
 

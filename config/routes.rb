@@ -1,10 +1,12 @@
 CsoChorus::Application.routes.draw do
   resources :members
-  root to: 'members#index'
+  root to: 'ember#index'
 
   match '/directory' => 'members#directory'
   match '/check_pictures' => 'members#check_pictures'
+  match '/member_statuss/:id' => 'member_status#show'
 
+  resources :voice_parts, only: [:index, :show]
   match '/chairs' => 'chair_schedules#index'
 
   # root :to => 'welcome#index'
