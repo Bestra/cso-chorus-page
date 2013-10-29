@@ -8,8 +8,4 @@ class MemberStatus < ActiveRecord::Base
     end
   end
 
-  alias_method :old_as_json, :as_json
-  def as_json(*args)
-    old_as_json(root: true, only: [:id, :description])
-  end
 end
