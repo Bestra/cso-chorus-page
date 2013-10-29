@@ -12,9 +12,10 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @members.map(&:to_ember_data) }
+      format.json { render json: @members }
     end
   end
+
 
   def directory
 
@@ -31,7 +32,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @member }
+      format.json { render json: @member, root: true }
     end
   end
 
