@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :member_status_options
   # GET /members
   # GET /members.json
   def index
@@ -154,5 +154,11 @@ class MembersController < ApplicationController
 
     def picture_status(member)
       status = Rails.application.assets.find_asset("Pics/#{member.id}.jpg").nil? ? false : true
+    end
+
+    def member_status_options
+      @status_options ||= MemberStatus.all.map do |s|
+        [s.id, s.description]
+      end
     end
 end

@@ -20,5 +20,5 @@ div.row
         tr
           td = link_to "#{member.first_name} #{member.last_name}", member
           td = member.voice_part.description
-          td = best_in_place member, :status_id, type: :select, collection: MemberStatus.select_options
+          td = best_in_place member, :status_id, type: :select, collection: member_status_options
           td = member.no_chairs
