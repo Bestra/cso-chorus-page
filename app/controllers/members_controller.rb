@@ -5,9 +5,9 @@ class MembersController < ApplicationController
   def index
     update_filter
     if params[:filter] == "0"
-      @members = Member.order(sort_column + " " + sort_direction)
+      @members = Member.order(sort_column + " " + sort_direction).with_details
     else
-      @members = Member.where(status_id: params[:filter].to_i).order(sort_column + " " + sort_direction)
+      @members = Member.where(status_id: params[:filter].to_i).order(sort_column + " " + sort_direction).with_details
     end
 
     respond_to do |format|
@@ -15,10 +15,9 @@ class MembersController < ApplicationController
       format.json { render json: @members }
     end
   end
-
   def directory
 
-    @members = Member.where(status_id: 1).order("last_name").includes(:voice_part, :email_addresses, :phone_numbers => [:phone_type])
+    @members = Member.where(status_id: 1).order("last_name").directory_details
     @conductor = Member.find(85)
     @conductor_address = { title: "First Community Church", address: "1320 Cambridge Blvd.", city: "Columbus" ,state: "OH", zip: 43212}
     @accompanist = Member.find(84)

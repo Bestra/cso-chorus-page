@@ -8,6 +8,9 @@ class Member < ActiveRecord::Base
 
   scope :active, -> { where(status_id: 1) }
 
+  scope :directory_details, -> { includes(:voice_part, :email_addresses, :phone_numbers => [:phone_type]) }
+  scope :with_details, -> { includes(:member_status, :voice_part, :email_addresses, :phone_numbers => [:phone_type]) }
+
   attrs = %i(address city state zip date_joined
              first_name last_name program_name
              height photo_path photo publish_data
