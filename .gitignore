@@ -18,3 +18,5 @@
 *.jpeg
 *.jpg
 *.JPG
+# ignore heroku's .env file
+.env
