@@ -2,6 +2,8 @@ class MembersController < MembersOnlyController
   helper_method :sort_column, :sort_direction, :member_status_options
   # GET /members
   # GET /members.json
+  before_filter :require_admin, except: [:directory]
+
   def index
     update_filter
     if params[:filter] == "0"
@@ -129,6 +131,10 @@ class MembersController < MembersOnlyController
 
 
   private
+
+    def require_admin
+      redirect_to directory_path unless is_admin?
+    end
 
     def cropping
       !params[:member][:crop_x].blank? && !params[:member][:crop_y].blank? && !params[:member][:crop_h].blank? && !params[:member][:crop_w].blank?

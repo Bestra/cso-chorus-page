@@ -11,10 +11,13 @@ html
       .navbar-inner
         .container
           =link_to 'CSO Chorus', root_path, class: "brand"
-          ul.nav
-            li = link_to 'Members', members_path
-            li = link_to 'Directory', directory_path
-            li = link_to 'Chair Schedule', directory_path
+          - if signed_in?
+            ul.nav
+              li = link_to 'Directory', directory_path
+              - if is_admin?
+                li = link_to 'Members', members_path
+                li = link_to 'Chair Schedule', directory_path
+              li = link_to 'Sign out', signout_path
 
 
     .container

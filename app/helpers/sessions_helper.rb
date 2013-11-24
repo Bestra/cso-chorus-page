@@ -10,6 +10,10 @@ module SessionsHelper
     @current_user
   end
 
+  def is_admin?
+    current_user.try(:is_admin?)
+  end
+
   def current_user=(user)
     @current_user = user
   end

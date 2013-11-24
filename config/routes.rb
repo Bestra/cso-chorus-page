@@ -7,7 +7,7 @@ CsoChorus::Application.routes.draw do
   match '/signin',  to: 'sessions#new', via: 'get', as: :signin
   match '/signout', to: 'sessions#destroy'
 
-  match '/directory' => 'members#directory'
+  match '/directory' => 'members#directory', as: :directory
   match '/check_pictures' => 'members#check_pictures'
 
   match '/chairs' => 'chair_schedules#index'
