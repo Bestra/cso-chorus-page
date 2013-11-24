@@ -8,8 +8,6 @@ development:
   database: store_development
   pool: 5
   host: localhost
-  username: Chris
-  password: 
 
 test:
   adapter: postgresql
@@ -25,5 +23,3 @@ production:
   encoding: unicode
   database: store_production
   pool: 5
-  username: Chris
-  password: 
