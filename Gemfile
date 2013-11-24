@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 #for heroku
 gem 'rails_12factor'
+
 gem 'pg'
 gem 'simple_form'
 gem 'nested_form'
@@ -14,8 +15,11 @@ gem 'slim'
 gem "slim-rails"
 gem "bootstrap-sass", '~> 2.2.1.1'
 gem "best_in_place"
-gem "paperclip", "~>3.0"
 gem "jcrop-rails"
+
+#store attached photos on s3
+gem "paperclip", "~>3.0"
+gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.
