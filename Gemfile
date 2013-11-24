@@ -29,6 +29,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'thin'
+
 group :development, :test do
   gem 'pry'
 end
