@@ -1,4 +1,4 @@
-class MembersController < ApplicationController
+class MembersController < MembersOnlyController
   helper_method :sort_column, :sort_direction, :member_status_options
   # GET /members
   # GET /members.json

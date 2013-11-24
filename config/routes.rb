@@ -2,6 +2,11 @@ CsoChorus::Application.routes.draw do
   resources :members
   root to: 'members#index'
 
+  resources :sessions, only: %i(create new destroy)
+
+  match '/signin',  to: 'sessions#new', via: 'get', as: :signin
+  match '/signout', to: 'sessions#destroy'
+
   match '/directory' => 'members#directory'
   match '/check_pictures' => 'members#check_pictures'
 

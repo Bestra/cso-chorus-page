@@ -1,4 +1,4 @@
-class ChairSchedulesController < ApplicationController
+class ChairSchedulesController < MembersOnlyController
   # GET /chair_schedules
   # GET /chair_schedules.json
   def index
