@@ -1,8 +1,8 @@
 require 'bcrypt'
 class Authenticator
   include BCrypt
-  u_pw = 'csc_member'
-  a_pw  = 'csc_admin'
+  u_pw = ENV['USER_PASSWORD']
+  a_pw  =  ENV['ADMIN_PASSWORD']
   user_password = Password.create(u_pw, cost: 1)
   admin_password = Password.create(a_pw, cost: 1)
 
