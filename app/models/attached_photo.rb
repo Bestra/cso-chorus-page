@@ -6,7 +6,7 @@ module AttachedPhoto
       :processors => [:cropper],
 
       url: ":s3_domain_url/:id_:style.:extension",
-      default_url: "Pics/no_image_thumb.jpg",
+      default_url: "Pics/no_image_thumb.jpg"
 
     validates_attachment_size :photo, :less_than => 2.megabytes
     #need attr_accessors because these fields aren't persisted to the database.
