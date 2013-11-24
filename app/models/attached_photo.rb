@@ -2,7 +2,7 @@ module AttachedPhoto
   #items for photo upload via paperclip, cropping via jcrop
  def AttachedPhoto.included(klass)
    klass.class_eval do
-    has_attached_file :photo, :styles => {:thumb => ["95x120#", :jpg], :large => ["500x500>", :jpg]},
+    has_attached_file :photo, :styles => {:thumb => ["95x120#", :jpg]},
       :processors => [:cropper],
 
       url: "Pics/:id_:style.:extension",
