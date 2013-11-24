@@ -18,7 +18,7 @@ gem "best_in_place"
 gem "jcrop-rails"
 
 #store attached photos on s3
-gem "paperclip", "~>3.0"
+gem "paperclip", "~>3.5"
 gem 'aws-sdk'
 
 # Gems used only for assets and not required
