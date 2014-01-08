@@ -15,6 +15,6 @@ div.row.upper-space
           - if is_admin?
             td = mail_to @date_emails[d.to_s], fd, subject: "Chair setup for #{fd}"
           - else
-            td = d.to_s
+            td = fd
 
 
