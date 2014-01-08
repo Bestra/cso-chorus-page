@@ -1,0 +1,20 @@
+div.row.upper-space
+  div.span12
+    table.table.table-striped
+      thead
+        th = sortable 'last_name', 'Name'
+        th = 'Email'
+        th = sortable 'scheduled_chair_date', 'Scheduled Chairs Date'
+      tbody
+      - @members.each do |member|
+        - d = member.scheduled_chair_date
+        - fd = d.strftime("%m/%d/%y")
+        tr
+          td = member.name
+          td = mail_to member.email, member.email
+          - if is_admin?
+            td = mail_to @date_emails[d.to_s], fd, subject: "Chair setup for #{fd}"
+          - else
+            td = d.to_s
+
+

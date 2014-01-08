@@ -1,5 +1,4 @@
 class MembersController < MembersOnlyController
-  helper_method :sort_column, :sort_direction, :member_status_options
   # GET /members
   # GET /members.json
   before_filter :require_admin, except: [:directory, :directory_index]
@@ -144,7 +143,7 @@ class MembersController < MembersOnlyController
   private
 
     def require_admin
-      redirect_to directory_path unless is_admin?
+      redirect_to directory_index_path unless is_admin?
     end
 
     def cropping
@@ -173,9 +172,4 @@ class MembersController < MembersOnlyController
       status = Rails.application.assets.find_asset("Pics/#{member.id}.jpg").nil? ? false : true
     end
 
-    def member_status_options
-      @status_options ||= MemberStatus.all.map do |s|
-        [s.id, s.description]
-      end
-    end
 end

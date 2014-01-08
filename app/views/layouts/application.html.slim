@@ -5,23 +5,23 @@ html
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    =yield(:head)
+    = yield(:head)
   body
     header.navbar.navbar-fixed-top
       .navbar-inner
         .container
-          =link_to 'Columbus Symphony Chorus', root_path, class: "brand"
+          = link_to 'Columbus Symphony Chorus', root_path, class: "brand"
           - if signed_in?
             ul.nav
               li = link_to 'Directory', directory_index_path
               - if is_admin?
                 li = link_to 'Members', members_path
-                li = link_to 'Chair Schedule', directory_path
+              li = link_to 'Chair Schedule', chair_schedule_path
               li = link_to 'Sign out', signout_path
 
 
     .container
-      -flash.each do |key, value|
+      - flash.each do |key, value|
         = content_tag(:div, value, class: "alert alert-#{key}")
-      =yield
+      = yield
 
