@@ -24,6 +24,10 @@ class MembersController < MembersOnlyController
     @conductor = Member.find(85)
     @conductor_address = { title: "First Community Church", address: "1320 Cambridge Blvd.", city: "Columbus" ,state: "OH", zip: 43212}
     @accompanist = Member.find(84)
+
+    year = Date.today.year.to_s
+    season = Date.today.month > 7 ? "Fall" : "Spring"
+    @date_stamp = season + " " + year
   end
 
   def directory_index
