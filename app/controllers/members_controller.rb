@@ -2,14 +2,15 @@ class MembersController < MembersOnlyController
   helper_method :sort_column, :sort_direction, :member_status_options
   # GET /members
   # GET /members.json
-  before_filter :require_admin, except: [:directory]
+  before_filter :require_admin, except: [:directory, :directory_index]
 
   def index
-    update_filter
-    if params[:filter] == "0"
+    update_filter 4
+    filter= params[:filter].to_i
+    if filter == 0
       @members = Member.order(sort_column + " " + sort_direction).with_details
     else
-      @members = Member.where(status_id: params[:filter].to_i).order(sort_column + " " + sort_direction).with_details
+      @members = Member.where(status_id: filter).order(sort_column + " " + sort_direction).with_details
     end
 
     respond_to do |format|
@@ -17,12 +18,23 @@ class MembersController < MembersOnlyController
       format.json { render json: @members }
     end
   end
+
   def directory
 
     @members = Member.where(status_id: 1).order("last_name").directory_details
     @conductor = Member.find(85)
     @conductor_address = { title: "First Community Church", address: "1320 Cambridge Blvd.", city: "Columbus" ,state: "OH", zip: 43212}
     @accompanist = Member.find(84)
+  end
+
+  def directory_index
+    update_filter(8)
+    @voice_parts = VoicePart.where('section IS NOT null').map{ |v| {description: v.description, id: v.id} }
+    @members = Member.active.voice_part(params[:filter].to_i).order(sort_column("last_name") + " " + sort_direction).with_details
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @members }
+    end
   end
 
   # GET /members/1
@@ -129,7 +141,6 @@ class MembersController < MembersOnlyController
     redirect_to members_path
   end
 
-
   private
 
     def require_admin
@@ -144,17 +155,17 @@ class MembersController < MembersOnlyController
       !params[:member][:photo].blank?
     end
 
-    def sort_column
-      Member.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    def sort_column(default="id")
+      Member.column_names.include?(params[:sort]) ? params[:sort] : default
     end
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
-    def update_filter
-      unless %w[0 1 2 3 4].include?(params[:filter])
-        params[:filter] = "0"
+    def update_filter(max)
+      unless (0..max).include?(params[:filter].to_i)
+        params[:filter] = 0
       end
     end
 

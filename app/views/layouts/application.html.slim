@@ -13,7 +13,7 @@ html
           =link_to 'Columbus Symphony Chorus', root_path, class: "brand"
           - if signed_in?
             ul.nav
-              li = link_to 'Directory', directory_path
+              li = link_to 'Directory', directory_index_path
               - if is_admin?
                 li = link_to 'Members', members_path
                 li = link_to 'Chair Schedule', directory_path

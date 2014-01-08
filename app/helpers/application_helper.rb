@@ -21,6 +21,6 @@ module ApplicationHelper
     direction = column_name == sort_column && sort_direction == "asc" ? "desc" : "asc"
     link_title = column_name ==sort_column ? column_title + direction_arrow() : column_title
 
-    link_to raw("#{link_title}"), sort: column_name, direction: direction, filter: params[:filter]
+    link_to raw("#{link_title}"), {sort: column_name, direction: direction, filter: params[:filter]}, class: "btn"
   end
 end

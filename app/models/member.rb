@@ -7,6 +7,7 @@ class Member < ActiveRecord::Base
   belongs_to :member_status, foreign_key: :status_id
 
   scope :active, -> { where(status_id: 1) }
+  scope :voice_part, ->(id) { id == 0 ? where(false) : where(voice_part_id: id) }
 
   scope :directory_details, -> { includes(:voice_part, :email_addresses, :phone_numbers => [:phone_type]) }
   scope :with_details, -> { includes(:member_status, :voice_part, :email_addresses, :phone_numbers => [:phone_type]) }
@@ -45,7 +46,12 @@ class Member < ActiveRecord::Base
 
   def email
     e = self.email_addresses.try(:first)
-    e.address if e
+    e ? e.address : "None"
+  end
+
+  def phone
+    e = self.phone_numbers.try(:first)
+    e ? e.number : "None"
   end
 
 

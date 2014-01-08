@@ -1,0 +1,25 @@
+div.row.upper-space
+  div.span12
+    div.btn-group.pull-right
+      button.btn Filter Voice Part
+      button class="btn dropdown-toggle" data-toggle="dropdown"
+        span.caret
+      ul.dropdown-menu
+        li = link_to 'Show all members', directory_index_path(filter: '0')
+        - @voice_parts.each do |v|
+          li = link_to v[:description], directory_index_path(filter: v[:id])
+    = link_to "Go to the pictorial directory", directory_path, class: "directory-link"
+    table.table.table-striped
+      thead
+        th = sortable 'last_name', 'Name'
+        th = sortable 'voice_part_id', 'Voice Part'
+        th = 'Phone'
+        th = 'Email'
+      tbody
+      - @members.each do |member|
+        tr
+          td = member.name
+          td = member.voice_part.description
+          td = member.phone
+          td = member.email
+

@@ -8,6 +8,7 @@ CsoChorus::Application.routes.draw do
   match '/signout', to: 'sessions#destroy'
 
   match '/directory' => 'members#directory', as: :directory
+  match '/directory_index' => 'members#directory_index', as: :directory_index
   match '/check_pictures' => 'members#check_pictures'
 
   match '/chairs' => 'chair_schedules#index'
