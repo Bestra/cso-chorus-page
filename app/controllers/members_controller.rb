@@ -72,10 +72,21 @@ class MembersController < MembersOnlyController
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(params[:member])
-
+    member_params = params[:member].except("email_addresses_attributes", "phone_numbers_attributes")
+    new_phones = params[:member].slice("phone_numbers_attributes")["phone_numbers_attributes"]
+    new_emails = params[:member].slice("email_addresses_attributes")["email_addresses_attributes"]
+    @member = Member.new(member_params)
+    success = @member.save
+    if success
+      new_phones.each_value do |phone|
+        @member.phone_numbers.create phone.except("_destroy")
+      end
+      new_emails.each_value do |email|
+        @member.email_addresses.create email.except("_destroy")
+      end
+    end
     respond_to do |format|
-      if @member.save
+      if success
         if params[:member][:photo].blank?
           format.html { redirect_to @member, notice: "#{@member.first_name} #{@member.last_name} was added successfully." }
           format.json { render json: @member, status: :created, location: @member }
