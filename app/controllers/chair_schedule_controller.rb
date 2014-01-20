@@ -4,7 +4,7 @@ class ChairScheduleController < MembersOnlyController
   # GET /chair_schedules.json
   include ApplicationHelper
   def index
-    @members = Member.active.where('scheduled_chair_date >= ?', Date.today)
+    @members = Member.active.where('scheduled_chair_date >= ?', Date.parse('2014-01-01'))
     .includes(:email_addresses)
     .order(sort_column("scheduled_chair_date") + " " + sort_direction)
 
