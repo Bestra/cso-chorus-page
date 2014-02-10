@@ -17,7 +17,7 @@ div.row.upper-space
         th = 'Email'
       tbody
       - @members.each do |member|
-        tr
+        tr.directory-entry
           td = member.name
           td = member.voice_part.description
           td = member.phone

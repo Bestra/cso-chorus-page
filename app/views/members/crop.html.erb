@@ -13,13 +13,13 @@ function update_crop(coords) {
   var rx = 95/coords.w;
   var ry = 120/coords.h;
   $('#preview').css({
-    width: Math.round(rx * <%= @member.photo_geometry(:large).width %>) + 'px',
-    height: Math.round(ry * <%= @member.photo_geometry(:large).height %>) + 'px',
+    width: Math.round(rx * <%= @member.photo_geometry(:original).width %>) + 'px',
+    height: Math.round(ry * <%= @member.photo_geometry(:original).height %>) + 'px',
     marginLeft: '-' + Math.round(rx * coords.x) + 'px',
     marginTop: '-' + Math.round(ry * coords.y) + 'px'
   });
   var w1 =<%= @member.photo_geometry(:original).width %>;
-  var w2 = <%= @member.photo_geometry(:large).width %>;
+  var w2 = <%= @member.photo_geometry(:original).width %>;
   var ratio = w1 / w2 ;
   console.log(w1,w2,ratio);
   $("#crop_x").val(Math.floor(coords.x * ratio));
@@ -30,7 +30,7 @@ function update_crop(coords) {
 </script>
 <% end %>
 
-<%= image_tag @member.photo.url(:large), :id => "cropbox", :class => "jcrop" %>
+<%= image_tag @member.photo.url(:original), :id => "cropbox", :class => "jcrop" %>
 
 <%= form_for @member do |f| %>
   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
@@ -40,6 +40,6 @@ function update_crop(coords) {
 <% end %>
 <h4>Preview:</h4>
 <div style="width:95px; height:120px; overflow:hidden">
-  <%= image_tag @member.photo.url(:large), :id => "preview" %>
+  <%= image_tag @member.photo.url(:original), :id => "preview" %>
 </div>
 
