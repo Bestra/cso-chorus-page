@@ -4,14 +4,16 @@ class ChairScheduleController < MembersOnlyController
   # GET /chair_schedules.json
   include ApplicationHelper
   def index
-    @members = Member.active.where('scheduled_chair_date >= ?', Date.parse('2014-01-01'))
-    .includes(:email_addresses)
-    .order(sort_column("scheduled_chair_date") + " " + sort_direction)
+    max_date = Date.today + scheduled_weeks.weeks
+    @members = Member.where('scheduled_chair_date IS NOT NULL')
+    .includes(:voice_part, :email_addresses)
+    .where('scheduled_chair_date < ?', max_date).order('voice_part_id ASC', 'last_name ASC')
 
     @date_emails = @members.group_by(&:scheduled_chair_date).reduce({}) do |accum, (date, members)|
       accum[date.to_s] = members.map(&:email).join(',')
       accum
     end
+
     respond_to do |format|
       format.html # index.html.erb
       format.csv { render text: member_csv_array(@members) }
@@ -19,14 +21,18 @@ class ChairScheduleController < MembersOnlyController
   end
 
   private
-  def member_csv_array(members)
-    member_attrs = members.map do |m|
-      [m.name, m.email, m.scheduled_chair_date]
+  def scheduled_weeks
+    if params[:weeks]
+      params[:weeks].to_i
+    else
+      13
     end
+  end
+
+  def member_csv_array(members)
     CSV.generate do |csv|
-      csv << ["Name", "Email", "Scheduled Date"]
-      member_attrs.each do |m|
-        csv << m
+      members.each do |m|
+        csv << ["#{m.last_name}, #{m.first_name}", m.scheduled_chair_date, m.voice_part.description]
       end
     end
   end
