@@ -11,7 +11,7 @@ div.row
         p
           -member.phone_numbers.each do |phone|
               -if phone.publish?
-                = "#{phone.phone_type.abbreviation} #{phone.number}"
+                = "#{phone.phone_type.abbreviation} #{phone.formatted_number}"
                 br
         -member.email_addresses.each do |email|
           -if email.publish
