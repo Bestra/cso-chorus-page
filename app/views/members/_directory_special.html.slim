@@ -15,14 +15,14 @@
           -if special_address[:title]
             =special_address[:title]
             br
-          = special_address[:address] 
+          = special_address[:address]
           br
           = "#{special_address[ :city ]}, #{special_address[:state]} #{special_address[ :zip ]}"
           br
 
       -else
         p
-          = member.address 
+          = member.address
           br
           = "#{member.city}, #{member.state} #{member.zip}"
           br
