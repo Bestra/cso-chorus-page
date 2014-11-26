@@ -51,7 +51,7 @@ class Member < ActiveRecord::Base
 
   def phone
     e = self.phone_numbers.try(:first)
-    e ? e.number : "None"
+    e ? e.formatted_number : "None"
   end
 
 

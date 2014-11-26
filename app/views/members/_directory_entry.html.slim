@@ -10,10 +10,11 @@ div.row
             = member.print_city_info
             br
         p
-          - member.phone_numbers.each do |phone|
-            - if phone.publish?
-              = "#{phone.phone_type.abbreviation} #{phone.number}"
-                br
+        - member.phone_numbers.each do |phone|
+          - if phone.publish?
+            = "#{phone.phone_type.abbreviation} #{phone.number}"
+            br
+
         - member.email_addresses.each do |email|
           - if email.publish
             = email.address
