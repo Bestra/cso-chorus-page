@@ -4,10 +4,11 @@ class ChairScheduleController < MembersOnlyController
   # GET /chair_schedules.json
   include ApplicationHelper
   def index
-    max_date = Date.today + scheduled_weeks.weeks
+    end_date = Date.today + scheduled_weeks.weeks
     @members = Member.where('scheduled_chair_date IS NOT NULL')
-    .includes(:voice_part, :email_addresses)
-    .where('scheduled_chair_date < ?', max_date).order('voice_part_id ASC', 'last_name ASC')
+      .includes(:voice_part, :email_addresses)
+      .where('scheduled_chair_date > ?', start_date)
+      .where('scheduled_chair_date < ?', end_date).order('last_name ASC')
 
     @date_emails = @members.group_by(&:scheduled_chair_date).reduce({}) do |accum, (date, members)|
       accum[date.to_s] = members.map(&:email).join(',')
@@ -21,6 +22,10 @@ class ChairScheduleController < MembersOnlyController
   end
 
   private
+  def start_date
+    Date.parse (params[:start_date] || "2015-1-1")
+  end
+
   def scheduled_weeks
     if params[:weeks]
       params[:weeks].to_i
