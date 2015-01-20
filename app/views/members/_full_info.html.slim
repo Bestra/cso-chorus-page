@@ -52,6 +52,4 @@ div.row
     - if member.photo.nil?
      = image_tag "Pics/no_image_thumb.jpg", class: "pull-right"
     - else
-     /previous syntax before paperclip
-     /= image_tag "Pics/#{member.id}.jpg", class: "pull-right"
      = image_tag member.photo.url(:thumb), class: "pull-right"
