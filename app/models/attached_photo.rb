@@ -26,7 +26,7 @@ module AttachedPhoto
 
   def photo_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.url(style))
   end
 
 
