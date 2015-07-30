@@ -1,3 +1,4 @@
+require 'csv'
 class MembersController < MembersOnlyController
   # GET /members
   # GET /members.json
@@ -37,6 +38,7 @@ class MembersController < MembersOnlyController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @members }
+      format.csv { render text: directory_csv_array(@members) }
     end
   end
 
@@ -185,6 +187,14 @@ class MembersController < MembersOnlyController
 
     def picture_status(member)
       status = Rails.application.assets.find_asset("Pics/#{member.id}.jpg").nil? ? false : true
+    end
+
+    def directory_csv_array(members)
+      CSV.generate do |csv|
+        members.each do |m|
+          csv << [m.last_name, m.first_name, m.voice_part.description, m.phone, m.email]
+        end
+      end
     end
 
 end
