@@ -51,8 +51,8 @@ function updatePreview(coords) {
 
 $(function() {
   $('#cropbox').Jcrop({
-    onChange: updateCrop,
-    onSelect: updateCrop,
+    onChange: cropUpdated,
+    onSelect: cropUpdated,
     setSelect: [0, 0, 500, 500],
     aspectRatio: 95 / 120
   });
