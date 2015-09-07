@@ -4,29 +4,10 @@
 var originalHeight = <%= @member.photo_geometry(:original).height %>;
 var originalWidth = <%= @member.photo_geometry(:original).width %>;
 
-function jCropScale() {
-  if (!window.jCropScaleFactor) {
-    window.jCropScaleFactor = originalHeight / $('.jcrop-holder').height();
-  }
-
-  return window.jCropScaleFactor;
-}
-
 function cropUpdated(windowCoords) {
-  // in some cases the size of the cropper itself will be smaller than the actual
-  // image.  if the image is 1000 x 2000 the cropper might only 500 x 1000, and we need
-  // to scale the crop coordinates up appropriately
 
-  var scale = jCropScale();
-  var imageCoords = {
-    x: windowCoords.x * scale,
-    y: windowCoords.y * scale,
-    h: windowCoords.h * scale,
-    w: windowCoords.w * scale
-  };
-
-  setFormValues(imageCoords);
-  updatePreview(imageCoords);
+  setFormValues(windowCoords);
+  updatePreview(windowCoords);
 
 }
 
