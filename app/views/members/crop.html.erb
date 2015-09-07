@@ -6,7 +6,7 @@ var originalWidth = <%= @member.photo_geometry(:original).width %>;
 
 function jCropScale() {
   if (!window.jCropScaleFactor) {
-    window.jCropScaleFactor = $('.jcrop-holder').height() / originalHeight;
+    window.jCropScaleFactor = originalHeight / $('.jcrop-holder').height();
   }
 
   return window.jCropScaleFactor;
