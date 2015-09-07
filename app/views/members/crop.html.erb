@@ -53,7 +53,8 @@ $(function() {
   $('#cropbox').Jcrop({
     onChange: cropUpdated,
     onSelect: cropUpdated,
-    setSelect: [0, 0, 500, 500],
+    maxSize: [300, 400],
+    setSelect: [0, 0, 300, 300],
     aspectRatio: 95 / 120
   });
 });
