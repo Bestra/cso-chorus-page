@@ -71,6 +71,10 @@ class MembersController < MembersOnlyController
     @member = Member.find(params[:id])
   end
 
+  def crop
+    @member = Member.find(params[:id])
+  end
+
   # POST /members
   # POST /members.json
   def create

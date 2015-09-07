@@ -1,5 +1,10 @@
 CsoChorus::Application.routes.draw do
-  resources :members
+  resources :members do
+    member do
+      get 'crop'
+    end
+  end
+
   root to: 'members#index'
 
   resources :sessions, only: %i(create new destroy)
