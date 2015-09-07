@@ -2,9 +2,9 @@ module AttachedPhoto
   #items for photo upload via paperclip, cropping via jcrop
  def AttachedPhoto.included(klass)
    klass.class_eval do
-    has_attached_file :photo, styles: {original: {convert_options: "-auto-orient"}, thumb: ["95x120#", :jpg]},
+    has_attached_file :photo,
+      :styles => {:thumb => ["95x120#", :jpg]},
       :processors => [:cropper],
-      :convert_options => { :all => '-auto-orient' },
 
       path: ":id_:style.jpg",
       default_path: "no_image_thumb.jpg"
