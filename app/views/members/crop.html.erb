@@ -21,8 +21,8 @@ function cropUpdated(windowCoords) {
   var imageCoords = {
     x: windowCoords.x * scale,
     y: windowCoords.y * scale,
-    height: windowCoords.height * scale,
-    width: windowCoords.width * scale
+    h: windowCoords.h * scale,
+    w: windowCoords.w * scale
   };
 
   setFormValues(imageCoords);
