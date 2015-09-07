@@ -4,7 +4,7 @@ module AttachedPhoto
    klass.class_eval do
     has_attached_file :photo,
       :styles => {:thumb => ["95x120#", :jpg],
-                  :original => {convert_options: '-auto-orient'}},
+                  :original => ["1000x1000>", :jpg]},
       :processors => [:cropper],
 
       path: ":id_:style.jpg",
