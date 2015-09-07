@@ -5,11 +5,11 @@ var originalHeight = <%= @member.photo_geometry(:original).height %>;
 var originalWidth = <%= @member.photo_geometry(:original).width %>;
 
 function jCropScale() {
-  if (!window.jCropScale) {
-    window.jCropScale = $('.jcrop-holder').height() / originalHeight;
+  if (!window.jCropScaleFactor) {
+    window.jCropScaleFactor = $('.jcrop-holder').height() / originalHeight;
   }
 
-  return window.jCropScale;
+  return window.jCropScaleFactor;
 }
 
 function cropUpdated(windowCoords) {
